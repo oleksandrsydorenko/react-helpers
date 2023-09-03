@@ -1,0 +1,53 @@
+{
+  "env": {
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "prettier"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": [
+    "@typescript-eslint",
+    "react",
+    "react-hooks",
+    "simple-import-sort",
+    "prettier"
+  ],
+  "rules": {
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "expression", "next": ["const", "let"] },
+      { "blankLine": "always", "prev": ["const", "let"], "next": "expression" },
+      { "blankLine": "always", "prev": "expression", "next": "import" },
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      {
+        "blankLine": "always",
+        "prev": "expression",
+        "next": ["block-like", "multiline-block-like"]
+      },
+      {
+        "blankLine": "always",
+        "prev": ["block-like", "multiline-block-like"],
+        "next": "expression"
+      }
+    ],
+    "prettier/prettier": "error",
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          ["^react$", "^@?\\w"],
+          ["^@?\\w"],
+          ["^\\u0000"],
+          ["^"],
+          ["^\\."]
+        ]
+      }
+    ],
+    "simple-import-sort/exports": "error"
+  }
+}

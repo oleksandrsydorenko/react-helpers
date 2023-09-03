@@ -1,0 +1,9 @@
+# Node.js dependencies
+node_modules/
+yarn-debug.log*
+yarn-error.log*
+
+# Editor-specific
+.vscode/
+.idea/
+.DS_Store
