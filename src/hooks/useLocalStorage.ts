@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 
-type Value = string | number | boolean | null;
+type Value = string | number | boolean | object | null;
 
-const useLocalStorage = (key: string, initialValue: Value): [Value, (value: Value) => void] => {
+const useLocalStorage = (
+  key: string,
+  initialValue: Value,
+): [Value, (value: Value) => void] => {
   const [storedValue, setStoredValue] = useState<Value>(() => {
-    const item = window.localStorage.getItem(key);
-
     try {
+      const item = window.localStorage.getItem(key);
+
       return item ? JSON.parse(item) : initialValue;
     } catch (error) {
-      console.error('useLocalStorage getItem error', error);
+      console.error('Retrieving data from localStorage error:', error);
 
       return initialValue;
     }
@@ -19,7 +22,7 @@ const useLocalStorage = (key: string, initialValue: Value): [Value, (value: Valu
     try {
       window.localStorage.setItem(key, JSON.stringify(storedValue));
     } catch (error) {
-      console.error('useLocalStorage setItem error', error);
+      console.error('Storing data in localStorage error:', error);
     }
   }, [key, storedValue]);
 
